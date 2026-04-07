@@ -2,7 +2,7 @@ const groups = [
   {
     title: 'DevOps & Cloud',
     color: 'bg-blue-50 text-blue-800',
-    tags: ['Docker', 'Kubernetes', 'Microsoft Azure', 'GitHub Actions'],
+    tags: ['Docker', 'Kubernetes','Linux','Bash Scripting', 'Microsoft Azure', 'GitHub Actions'],
   },
   {
     title: 'Backend Development',
