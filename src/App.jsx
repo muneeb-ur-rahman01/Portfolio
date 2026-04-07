@@ -10,7 +10,7 @@ import Footer from './Components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#545657] text-white font-sans">
+    <div className="min-h-screen bg-black text-white font-sans">
       <Navbar />
 
       <main className="px-4 md:px-12 py-6 space-y-10">

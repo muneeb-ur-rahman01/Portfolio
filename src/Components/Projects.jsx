@@ -31,7 +31,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="mb-10">
+    <section id="projects" className="mb-10 font-code">
       <p className="text-[20px] uppercase tracking-widest text-White font-medium mb-4 pb-2 border-b border-gray-100">
         Projects
       </p>
@@ -39,7 +39,7 @@ export default function Projects() {
         {projects.map(({ icon, bg, name, desc, stack }) => (
           <div
             key={name}
-            className="bg-[#545657] border border-gray-200 rounded-xl p-5 hover:border-gray-300 transition cursor-pointer"
+            className="bg-black border border-gray-200 rounded-xl p-5 hover:border-gray-300 transition cursor-pointer"
           >
             <div
               className={`w-9 h-9 ${bg} rounded-lg flex items-center justify-center text-base mb-3`}

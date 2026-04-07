@@ -7,11 +7,11 @@ const bullets = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="mb-10">
+    <section id="experience" className="mb-10 font-code">
       <p className="text-[20px] uppercase tracking-widest text-White font-medium mb-4 pb-2 border-b border-gray-100">
         Experience
       </p>
-      <div className="bg-[#545657] border border-gray-200 rounded-xl p-5">
+      <div className="bg-black border border-gray-200 rounded-xl p-5">
         <div className="flex justify-between items-start mb-4">
           <div>
             <p className="text-sm font-medium">Junior DevOps Engineer Intern</p>

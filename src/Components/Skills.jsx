@@ -23,13 +23,13 @@ const groups = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="mb-10">
+    <section id="skills" className="mb-10 font-code">
       <p className="text-[20px] uppercase tracking-widest text-white font-medium mb-4 pb-2 border-b border-gray-100">
         Technical Skills
       </p>
       <div className="grid grid-cols-2 gap-3">
         {groups.map(({ title, color, tags }) => (
-          <div key={title} className="bg-[#545657] border border-gray-200 rounded-xl p-4">
+          <div key={title} className="bg-black border border-gray-200 rounded-xl p-4">
             <p className="text-xs font-medium text-white mb-3">{title}</p>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (

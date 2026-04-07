@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#545657] border-b  text-gray-400 py-6 mt-10">
+    <footer className="bg-black border-b  text-white py-6 mt-10">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         <p className="text-sm mb-4 md:mb-0">
           &copy; {new Date().getFullYear()} Muneeb Ur Rahman. All rights reserved.

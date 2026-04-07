@@ -6,9 +6,9 @@ const stats = [
 
 export default function Stats() {
   return (
-    <div className="grid grid-cols-3 gap-3 mb-10">
+    <div className="grid grid-cols-3 gap-3 mb-10 font-code">
       {stats.map(({ num, label }) => (
-        <div key={label} className="bg-[#545657] border rounded-lg p-4 text-center">
+        <div key={label} className="bg-black border rounded-lg p-4 text-center">
           <p className="text-2xl font-medium">{num}</p>
           <p className="text-xs text-white mt-1">{label}</p>
         </div>

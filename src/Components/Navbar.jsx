@@ -12,9 +12,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="w-full px-6 py-4 bg-[#545657]  flex justify-between items-center">
-
-        <span className="text-[20px] font-medium">Muhammad Muneeb Ur Rahman Shahzad</span>
+      <nav className="w-full px-6 py-4 bg-black flex justify-between items-center font-code">
+        <span className="text-[20px] font-medium">
+          Muhammad Muneeb Ur Rahman Shahzad
+        </span>
 
         {/* Desktop */}
         <div className="hidden md:flex gap-8">
@@ -36,12 +37,22 @@ export default function Navbar() {
       </nav>
 
       {/* Drawer */}
-      <div className={`fixed top-0 right-0 h-full w-64 bg-black border-l border-gray-800 p-6 transition ${open ? "translate-x-0" : "translate-x-full"}`}>
-        <button onClick={() => setOpen(false)} className="mb-6">✕</button>
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-black border-l border-gray-800 p-6 transition-transform transform ${
+          open ? "translate-x-0" : "translate-x-full"
+        } font-code`}
+      >
+        <button onClick={() => setOpen(false)} className="mb-6 text-white">
+          ✕
+        </button>
 
         <div className="flex flex-col gap-6">
           {links.map((s) => (
-            <button key={s} onClick={() => scrollTo(s)} className="text-gray-400 hover:text-white text-left">
+            <button
+              key={s}
+              onClick={() => scrollTo(s)}
+              className="text-gray-400 hover:text-white text-left"
+            >
               {s}
             </button>
           ))}
