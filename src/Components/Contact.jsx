@@ -1,6 +1,6 @@
 const items = [
   { label: 'Email', value: 'muneeburrahman096@gmail.com' },
-  { label: 'Phone', value: '+92-311-9846336' },
+  { label: 'Phone', value: '+92311-9846336' },
   { label: 'Location', value: 'Karachi, Pakistan' },
 ];
 
