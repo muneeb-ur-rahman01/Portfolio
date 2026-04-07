@@ -2,8 +2,6 @@ const items = [
   { label: 'Email', value: 'muneeburrahman096@gmail.com' },
   { label: 'Phone', value: '+92-311-9846336' },
   { label: 'Location', value: 'Karachi, Pakistan' },
-  { label: 'GitHub', value: 'https://github.com/' },
-  { label: 'LinkedIn', value: 'https://www.linkedin.com/in/muneeb-ur-rahman-943206281?utm_source=share_via&utm_content=profile&utm_medium=member_android' }
 ];
 
 export default function Contact() {
