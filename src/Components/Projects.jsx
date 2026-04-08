@@ -27,6 +27,43 @@ const projects = [
     desc: 'Deployed blockchain nodes on Azure using Kubernetes clusters with high availability.',
     stack: ['Azure', 'Kubernetes', 'Blockchain'],
   },
+
+  // Your Projects 👇
+  {
+    icon: '🤖',
+    bg: 'bg-green-50',
+    name: 'Arduino Obstacle Avoiding Robot',
+    desc: 'A Robotic car which avoid the obstacles from 40m distance and find the other path to move further',
+    stack: ['Arduino UNO','Jumper Wires','Motors','Battery','Tyres'],
+  },
+  {
+    icon: '🎓',
+    bg: 'bg-indigo-50',
+    name: 'Campus Event Management Web Application',
+    desc: 'Web application using React.js and Node.js to manage campus events with a userfriendly UI',
+    stack: ['React.js','Node.js','Express.js','Appwrite','MongoDB'],
+  },
+  {
+    icon: '📅',
+    bg: 'bg-pink-50',
+    name: 'Event Management System',
+    desc: 'Java Based Desktop application using GUI for event planning and scheduling',
+    stack: ['OOP concepts','Java language','SQL Server'],
+  },
+  {
+    icon: '🏨',
+    bg: 'bg-yellow-50',
+    name: 'Hotel Management System',
+    desc: 'Built with Java core programming concepts to handle and manage the Entire Hotel Operations',
+    stack: ['MS Access','OOP','Java Language'],
+  },
+  {
+    icon: '💰',
+    bg: 'bg-emerald-50',
+    name: 'Personal Finance Manager',
+    desc: 'A Mobile Application where a user manage weekly, Monthly, Yearly expenses, also show the reports ',
+    stack: ['Firebase','Flutter'],
+  },
 ];
 
 export default function Projects() {
