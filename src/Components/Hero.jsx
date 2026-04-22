@@ -18,7 +18,7 @@ export default function Hero() {
           <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-3">
             Muhammad Muneeb <br />
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Ur Rahman
+              Ur Rahman Shahzad
             </span>
           </h1>
 

@@ -17,7 +17,7 @@ export default function Navbar() {
         
         {/* Logo / Name */}
         <span className="text-lg md:text-xl font-semibold tracking-wide text-white hover:text-gray-300 transition">
-          Muneeb Shahzad
+          Muhammad Muneeb Ur Rahman Shahzad
         </span>
 
         {/* Desktop Menu */}
