@@ -1,28 +1,11 @@
 const projects = [
   {
-    icon: "🐳",
-    name: "Containerized React Deployment",
-    desc: "Dockerized and orchestrated a React.js app using Kubernetes on Azure with automated rollouts.",
-    stack: ["Docker", "Kubernetes", "Azure", "React.js"],
+    icon: "🧑‍💼",
+    name: "Employee Management Web API",
+    desc: "Built a backend RESTful CRUD API using ASP.NET Web API with Swagger integration for API testing and documentation.",
+    stack: [".NET Web API", "ASP.NET", "Swagger", "CRUD API"],
   },
-  {
-    icon: "⚙️",
-    name: "CI/CD Pipeline Automation",
-    desc: "GitHub Actions workflows for automated build, test, and deployment of applications.",
-    stack: ["GitHub Actions", "CI/CD", "Docker"],
-  },
-  {
-    icon: "📊",
-    name: "Infrastructure Monitoring Dashboard",
-    desc: "Prometheus + Grafana dashboards to monitor Kubernetes cluster health and resource usage.",
-    stack: ["Prometheus", "Grafana", "Kubernetes"],
-  },
-  {
-    icon: "🔗",
-    name: "Blockchain Node Deployment",
-    desc: "Deployed blockchain nodes on Azure using Kubernetes clusters with high availability.",
-    stack: ["Azure", "Kubernetes", "Blockchain"],
-  },
+
   {
     icon: "🤖",
     name: "Arduino Obstacle Avoiding Robot",
