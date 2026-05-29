@@ -36,6 +36,12 @@ const projects = [
     desc: "Mobile app for tracking expenses with reports & analytics.",
     stack: ["Flutter", "Firebase"],
   },
+  {
+  icon: "📦",
+  name: "Smart Inventory and Warehouse Management System",
+  desc: "Implemented secure JWT Authentication & Role Based Authorization along with password hashing and middleware based exception handling. Build Advanced modules including Product Management, Warehouse Management, Supplier Management, Inventory Tracking, and Order Processing with automated stock detection logic.",
+  stack: ["ASP.NET", "C#", "SQL Server", "Web API", "JWT Authentication"],
+},
 ];
 
 export default function Projects() {
