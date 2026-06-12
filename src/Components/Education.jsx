@@ -25,11 +25,6 @@ export default function Education() {
               Bahria University · 2023 – 2027
             </p>
           </div>
-
-          {/* Badge */}
-          <span className="text-xs bg-gradient-to-r from-green-400/20 to-emerald-400/20 text-green-400 px-4 py-1.5 rounded-full font-medium border border-green-500/30 backdrop-blur-sm">
-            7th Semester
-          </span>
         </div>
       </div>
     </section>
