@@ -42,6 +42,19 @@ const projects = [
   desc: "Implemented secure JWT Authentication & Role Based Authorization along with password hashing and middleware based exception handling. Build Advanced modules including Product Management, Warehouse Management, Supplier Management, Inventory Tracking, and Order Processing with automated stock detection logic.",
   stack: ["ASP.NET", "C#", "SQL Server", "Web API", "JWT Authentication"],
 },
+{
+  icon: "🧠",
+  name: "AI Code Analyzer",
+  desc: "Developed an AI-powered code analysis platform with secure multi-user repository management, automated static code analysis, and project health insights.",
+  stack: [
+    "ASP.NET Core",
+    "C#",
+    "SQL Server",
+    "Roslyn",
+    "AI",
+    "Session Authentication"
+  ],
+},
 ];
 
 export default function Projects() {
