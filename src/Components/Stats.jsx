@@ -1,7 +1,7 @@
 const stats = [
   { num: "5+", label: "Technologies" },
   { num: "1", label: "Internship" },
-  { num: "7th", label: "Semester" },
+  { num: "8th", label: "Semester" },
 ];
 
 export default function Stats() {
