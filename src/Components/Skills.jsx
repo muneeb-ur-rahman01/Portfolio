@@ -2,17 +2,12 @@ const groups = [
   {
     title: "DevOps & Cloud",
     gradient: "from-blue-500 to-cyan-400",
-    tags: ["Docker", "Kubernetes", "Linux", "Bash", "Azure", "GitHub Actions"],
+    tags: ["Docker", "Kubernetes", "Linux", "Bash", "Azure", "GitHub Actions","Jenkins","CI/CD","Automation"],
   },
   {
-    title: "Backend Development",
+    title: "Backend Development and Frontend",
     gradient: "from-purple-500 to-pink-400",
-    tags: [".NET Core", "Web API", "C#", "Entity Framework"],
-  },
-  {
-    title: "Frontend",
-    gradient: "from-teal-400 to-emerald-400",
-    tags: ["React.js", "Tailwind CSS"],
+    tags: [".NET Core", "Web API", "C#", "Entity Framework", "React.js","TailwindCSS"],
   },
   {
     title: "Monitoring & Databases",
