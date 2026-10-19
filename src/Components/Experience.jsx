@@ -13,7 +13,7 @@ const experiences = [
       "Designed the SaaS product's backend architecture and database schema as a backend developer intern.",
       "Built RESTful APIs with ASP.NET Core and SQL Server for the product's core features.",
       "Implemented JWT authentication and role-based authorization to secure user access.",
-      "Documented API endpoints with Swagger, tested them using Postman, and collaborated with the team through GitHub.",
+      "Documented API endpoints with Swagger, tested them using Postman.",
     ],
   },
   {
