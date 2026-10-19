@@ -1,83 +1,171 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FiMenu, FiX } from "react-icons/fi";
+
+const links = [
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+  { id: "contact", label: "Contact" },
+];
+
+const watched = ["home", ...links.map((l) => l.id)];
+
+const scrollTo = (id) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("home");
 
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  // Shrink / strengthen the bar after scrolling a little
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Highlight the link of the section currently in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    watched.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  // Lock page scroll while the mobile drawer is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const go = (id) => {
+    scrollTo(id);
     setOpen(false);
   };
 
-  const links = ["skills", "experience", "projects", "contact"];
-
   return (
     <>
-      {/* Navbar */}
-      <nav className="w-full px-6 md:px-12 py-4 bg-black/80 backdrop-blur-md border-b border-gray-800 flex justify-between items-center font-code sticky top-0 z-50">
-        
-        {/* Logo / Name */}
-        <span className="text-lg md:text-xl font-semibold tracking-wide text-white hover:text-gray-300 transition">
-          Muhammad Muneeb Ur Rahman Shahzad
-        </span>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-10">
-          {links.map((s) => (
-            <button
-              key={s}
-              onClick={() => scrollTo(s)}
-              className="relative text-sm text-gray-300 hover:text-white transition group capitalize"
-            >
-              {s}
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all group-hover:w-full"></span>
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Button */}
-        <button
-          onClick={() => setOpen(true)}
-          className="md:hidden text-2xl text-white hover:text-gray-300 transition"
+      <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+        <motion.nav
+          initial={{ y: -80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className={`flex w-full max-w-5xl items-center justify-between rounded-full border px-4 py-2.5 backdrop-blur-xl transition-all duration-300 md:px-5 ${
+            scrolled
+              ? "border-white/15 bg-black/60 shadow-lg shadow-violet-500/10"
+              : "border-white/5 bg-white/[0.03]"
+          }`}
         >
-          ☰
-        </button>
-      </nav>
+          {/* Logo */}
+          <button
+            onClick={() => go("home")}
+            className="group flex items-center gap-3"
+            aria-label="Back to top"
+          >
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-cyan-400 font-code text-[10px] font-bold text-black transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+              MUR
+            </span>
+            <span className="hidden text-sm font-semibold tracking-wide text-gray-200 sm:block">
+              Muneeb Ur Rahman
+            </span>
+          </button>
 
-      {/* Overlay */}
-      {open && (
-        <div
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-        />
-      )}
+          {/* Desktop links */}
+          <div className="hidden items-center gap-1 md:flex">
+            {links.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => go(id)}
+                className={`relative rounded-full px-4 py-1.5 text-sm transition-colors ${
+                  active === id ? "text-white" : "text-gray-400 hover:text-white"
+                }`}
+              >
+                {active === id && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 rounded-full bg-white/10"
+                  />
+                )}
+                <span className="relative">{label}</span>
+              </button>
+            ))}
+          </div>
 
-      {/* Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-72 bg-black border-l border-gray-800 p-6 z-50 transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Close */}
-        <button
-          onClick={() => setOpen(false)}
-          className="mb-10 text-white text-xl hover:text-gray-400 transition"
-        >
-          ✕
-        </button>
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setOpen(true)}
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-xl text-white transition hover:bg-white/10 md:hidden"
+            aria-label="Open menu"
+          >
+            <FiMenu />
+          </button>
+        </motion.nav>
+      </header>
 
-        {/* Links */}
-        <div className="flex flex-col gap-8">
-          {links.map((s) => (
-            <button
-              key={s}
-              onClick={() => scrollTo(s)}
-              className="text-lg text-gray-400 hover:text-white transition text-left capitalize border-b border-gray-800 pb-2"
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-[55] bg-black/60 backdrop-blur-sm"
+            />
+            <motion.aside
+              key="drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 34 }}
+              className="fixed right-0 top-0 z-[56] h-full w-72 border-l border-white/10 bg-[#07070d]/95 p-6 backdrop-blur-xl"
             >
-              {s}
-            </button>
-          ))}
-        </div>
-      </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="mb-10 grid h-9 w-9 place-items-center rounded-full border border-white/10 text-xl transition hover:bg-white/10"
+                aria-label="Close menu"
+              >
+                <FiX />
+              </button>
+
+              <div className="flex flex-col gap-6">
+                {links.map(({ id, label }, i) => (
+                  <motion.button
+                    key={id}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.06 }}
+                    onClick={() => go(id)}
+                    className={`border-b border-white/10 pb-3 text-left text-lg transition ${
+                      active === id ? "text-white" : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

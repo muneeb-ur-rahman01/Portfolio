@@ -1,3 +1,7 @@
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
+import SpotlightCard from "./SpotlightCard";
+
 const projects = [
   {
     icon: "🧑‍💼",
@@ -5,7 +9,6 @@ const projects = [
     desc: "Built a backend RESTful CRUD API using ASP.NET Web API with Swagger integration for API testing and documentation.",
     stack: [".NET Web API", "ASP.NET", "Swagger", "CRUD API"],
   },
-
   {
     icon: "🤖",
     name: "Arduino Obstacle Avoiding Robot",
@@ -37,78 +40,58 @@ const projects = [
     stack: ["Flutter", "Firebase"],
   },
   {
-  icon: "📦",
-  name: "Smart Inventory and Warehouse Management System",
-  desc: "Implemented secure JWT Authentication & Role Based Authorization along with password hashing and middleware based exception handling. Build Advanced modules including Product Management, Warehouse Management, Supplier Management, Inventory Tracking, and Order Processing with automated stock detection logic.",
-  stack: ["ASP.NET", "C#", "SQL Server", "Web API", "JWT Authentication"],
-},
-{
-  icon: "🧠",
-  name: "AI Code Analyzer",
-  desc: "Developed an AI-powered code analysis platform with secure multi-user repository management, automated static code analysis, and project health insights.",
-  stack: [
-    "ASP.NET Core",
-    "C#",
-    "SQL Server",
-    "Roslyn",
-    "AI",
-    "Session Authentication"
-  ],
-},
+    icon: "📦",
+    name: "Smart Inventory and Warehouse Management System",
+    desc: "Implemented secure JWT Authentication & Role Based Authorization along with password hashing and middleware based exception handling. Build Advanced modules including Product Management, Warehouse Management, Supplier Management, Inventory Tracking, and Order Processing with automated stock detection logic.",
+    stack: ["ASP.NET", "C#", "SQL Server", "Web API", "JWT Authentication"],
+  },
+  {
+    icon: "🧠",
+    name: "AI Code Analyzer",
+    desc: "Developed an AI-powered code analysis platform with secure multi-user repository management, automated static code analysis, and project health insights.",
+    stack: ["ASP.NET Core", "C#", "SQL Server", "Roslyn", "AI", "Session Authentication"],
+  },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="mb-20 text-white font-code px-4 md:px-0">
-      
-      {/* Heading */}
-      <p className="text-xl md:text-2xl font-semibold uppercase tracking-widest mb-10 relative inline-block">
-        Projects
-        <span className="absolute left-0 -bottom-2 w-1/2 h-[2px] bg-gradient-to-r from-purple-500 to-cyan-400"></span>
-      </p>
+    <section id="projects" className="scroll-mt-24 py-20">
+      <SectionHeading
+        index="03"
+        eyebrow="Projects"
+        title="Projects"
+        subtitle="Things I've built across backend, cloud, desktop, mobile and embedded."
+      />
 
-      {/* Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map(({ icon, name, desc, stack }) => (
-          
-          <div
-            key={name}
-            className="group relative bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a] border border-gray-800 rounded-2xl p-6 overflow-hidden transition duration-300 hover:scale-[1.04] hover:border-purple-500 cursor-pointer"
-          >
-            
-            {/* Glow Effect */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-r from-purple-500/10 to-cyan-400/10 blur-xl"></div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map(({ icon, name, desc, stack }, i) => (
+          <Reveal key={name} delay={(i % 3) * 0.1} className="h-full">
+            <SpotlightCard className="group h-full p-6">
+              <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl border border-white/10 bg-white/5 text-xl transition duration-300 group-hover:rotate-6 group-hover:scale-110">
+                {icon}
+              </div>
 
-            {/* Icon */}
-            <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 text-xl mb-4 group-hover:scale-110 transition">
-              {icon}
-            </div>
+              <p className="mb-2 text-base font-semibold">{name}</p>
 
-            {/* Title */}
-            <p className="text-base font-semibold mb-2 group-hover:text-white transition">
-              {name}
-            </p>
+              <p className="mb-5 text-sm leading-relaxed text-gray-400 transition group-hover:text-gray-300">
+                {desc}
+              </p>
 
-            {/* Description */}
-            <p className="text-sm text-gray-400 leading-relaxed mb-4 group-hover:text-gray-300 transition">
-              {desc}
-            </p>
+              <div className="flex flex-wrap gap-2">
+                {stack.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-code text-[11px] text-gray-300 transition group-hover:border-violet-400/40"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
 
-            {/* Stack */}
-            <div className="flex flex-wrap gap-2">
-              {stack.map((s) => (
-                <span
-                  key={s}
-                  className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-gray-700 text-gray-300 backdrop-blur-sm group-hover:border-gray-500 transition"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-
-            {/* Bottom Accent Line */}
-            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-500 to-cyan-400 group-hover:w-full transition-all duration-300"></div>
-          </div>
+              {/* Bottom accent line sweeps in on hover */}
+              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-violet-500 to-cyan-400 transition-all duration-500 group-hover:w-full" />
+            </SpotlightCard>
+          </Reveal>
         ))}
       </div>
     </section>

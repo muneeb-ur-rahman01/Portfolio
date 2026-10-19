@@ -1,3 +1,5 @@
+import Background from './Components/Background'
+import ScrollProgress from './Components/ScrollProgress'
 import Navbar from './Components/Navbar'
 import Hero from './Components/Hero'
 import Stats from './Components/Stats'
@@ -10,10 +12,12 @@ import Footer from './Components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="relative min-h-screen font-display text-white">
+      <Background />
+      <ScrollProgress />
       <Navbar />
 
-      <main className="px-4 md:px-12 py-6 space-y-10">
+      <main className="mx-auto max-w-6xl px-5 md:px-8">
         <Hero />
         <Stats />
         <Skills />
@@ -21,8 +25,9 @@ export default function App() {
         <Projects />
         <Education />
         <Contact />
-        <Footer/>
       </main>
+
+      <Footer />
     </div>
   );
 }

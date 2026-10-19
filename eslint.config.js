@@ -23,7 +23,18 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // `motion` is used as <motion.div />, which plain ESLint doesn't count as a usage
+      'no-unused-vars': [
+        'error',
+        { varsIgnorePattern: '^(motion|[A-Z_])', argsIgnorePattern: '^[A-Z_]' },
+      ],
+    },
+  },
+  {
+    // Tooling configs run in Node, not the browser
+    files: ['tailwind.config.js', 'vite.config.js', 'postcss.config.js'],
+    languageOptions: {
+      globals: globals.node,
     },
   },
 ])

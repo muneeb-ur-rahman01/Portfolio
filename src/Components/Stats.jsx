@@ -1,35 +1,54 @@
+import { useEffect, useRef, useState } from "react";
+import { animate, useInView } from "framer-motion";
+import Reveal from "./Reveal";
+import SpotlightCard from "./SpotlightCard";
+
 const stats = [
-  { num: "5+", label: "Technologies" },
-  { num: "1", label: "Internship" },
-  { num: "8th", label: "Semester" },
+  { to: 5, suffix: "+", label: "Technologies" },
+  { to: 1, suffix: "", label: "Internship" },
+  { to: 8, suffix: "th", label: "Semester" },
 ];
+
+function Counter({ to, suffix }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, to, {
+      duration: 1.6,
+      ease: "easeOut",
+      onUpdate: (v) => setValue(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [inView, to]);
+
+  return (
+    <span ref={ref}>
+      {value}
+      {suffix}
+    </span>
+  );
+}
 
 export default function Stats() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-16 text-white font-code px-4 md:px-0 max-w-4xl mx-auto">
-      {stats.map(({ num, label }) => (
-        <div
-          key={label}
-          className="group relative bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a] border border-gray-800 rounded-2xl p-6 text-center transition duration-300 hover:scale-[1.05] hover:border-purple-500"
-        >
-          
-          {/* Glow */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-r from-purple-500/10 to-cyan-400/10 blur-xl"></div>
-
-          {/* Number */}
-          <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-            {num}
-          </p>
-
-          {/* Label */}
-          <p className="text-xs md:text-sm text-gray-400 mt-2 uppercase tracking-wider group-hover:text-gray-200 transition break-words">
-            {label}
-          </p>
-
-          {/* Bottom Accent */}
-          <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-500 to-cyan-400 group-hover:w-full transition-all duration-300"></div>
-        </div>
-      ))}
-    </div>
+    <section className="py-10">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3">
+        {stats.map(({ to, suffix, label }, i) => (
+          <Reveal key={label} delay={i * 0.1}>
+            <SpotlightCard className="p-6 text-center">
+              <p className="text-gradient font-code text-4xl font-bold md:text-5xl">
+                <Counter to={to} suffix={suffix} />
+              </p>
+              <p className="mt-2 text-xs uppercase tracking-widest text-gray-400 md:text-sm">
+                {label}
+              </p>
+            </SpotlightCard>
+          </Reveal>
+        ))}
+      </div>
+    </section>
   );
 }

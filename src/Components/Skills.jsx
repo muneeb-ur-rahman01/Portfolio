@@ -1,69 +1,88 @@
+import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
+import SpotlightCard from "./SpotlightCard";
+
 const groups = [
   {
     title: "DevOps & Cloud",
-    gradient: "from-blue-500 to-cyan-400",
-    tags: ["Docker", "Kubernetes", "Linux", "Bash", "Azure", "GitHub Actions","Jenkins","CI/CD","Automation"],
+    gradient: "from-blue-400 to-cyan-300",
+    tags: ["Docker", "Kubernetes", "Linux", "Bash", "Azure", "GitHub Actions", "Jenkins", "CI/CD", "Automation"],
   },
   {
     title: "Backend Development and Frontend",
-    gradient: "from-purple-500 to-pink-400",
-    tags: [".NET Core", "Web API", "C#", "Entity Framework", "React.js","TailwindCSS"],
+    gradient: "from-purple-400 to-pink-300",
+    tags: [".NET Core", "Web API", "C#", "Entity Framework", "React.js", "TailwindCSS"],
   },
   {
     title: "Monitoring & Databases",
-    gradient: "from-amber-400 to-orange-500",
+    gradient: "from-amber-300 to-orange-400",
     tags: ["Prometheus", "Grafana", "SQL Server", "MongoDB"],
   },
 ];
 
+const allTags = groups.flatMap((g) => g.tags);
+
+const tagList = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.05, delayChildren: 0.25 } },
+};
+const tagItem = {
+  hidden: { opacity: 0, scale: 0.8, y: 10 },
+  show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4 } },
+};
+
 export default function Skills() {
   return (
-    <section id="skills" className="mb-20 text-white font-code px-4 md:px-0">
-      
-      {/* Heading */}
-      <p className="text-xl md:text-2xl font-semibold uppercase tracking-widest mb-10 relative inline-block">
-        Technical Skills
-        <span className="absolute left-0 -bottom-2 w-1/2 h-[2px] bg-gradient-to-r from-purple-500 to-cyan-400"></span>
-      </p>
+    <section id="skills" className="scroll-mt-24 py-20">
+      <SectionHeading index="01" eyebrow="Skills" title="Technical Skills" />
 
-      {/* Grid */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {groups.map(({ title, gradient, tags }) => (
-          
-          <div
-            key={title}
-            className="group relative bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a] border border-gray-800 rounded-2xl p-6 transition duration-300 hover:scale-[1.03] hover:border-purple-500"
-          >
-            
-            {/* Glow */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-r from-purple-500/10 to-cyan-400/10 blur-xl"></div>
+      <div className="grid gap-6 md:grid-cols-2">
+        {groups.map(({ title, gradient, tags }, i) => (
+          <Reveal key={title} delay={i * 0.1} className={i === 2 ? "md:col-span-2" : ""}>
+            <SpotlightCard className="h-full p-6">
+              <p
+                className={`mb-5 bg-gradient-to-r ${gradient} bg-clip-text text-base font-semibold text-transparent`}
+              >
+                {title}
+              </p>
 
-            {/* Title */}
-            <p
-              className={`text-sm font-semibold mb-5 bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}
-            >
-              {title}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-gray-700 text-gray-300 backdrop-blur-sm transition duration-300 hover:border-gray-500 hover:text-white hover:scale-105"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Bottom Accent */}
-            <div
-              className={`absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r ${gradient} group-hover:w-full transition-all duration-300`}
-            ></div>
-          </div>
+              <motion.div
+                variants={tagList}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-60px" }}
+                className="flex flex-wrap gap-2"
+              >
+                {tags.map((tag) => (
+                  <motion.span
+                    key={tag}
+                    variants={tagItem}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-code text-xs text-gray-300 backdrop-blur-sm transition-colors hover:border-violet-400/60 hover:text-white"
+                  >
+                    {tag}
+                  </motion.span>
+                ))}
+              </motion.div>
+            </SpotlightCard>
+          </Reveal>
         ))}
       </div>
+
+      {/* Scrolling tech ticker */}
+      <Reveal delay={0.2} className="mask-fade-x mt-12 overflow-hidden">
+        <div className="flex w-max animate-marquee gap-4 hover:[animation-play-state:paused]">
+          {[...allTags, ...allTags].map((tag, i) => (
+            <span
+              key={`${tag}-${i}`}
+              className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 font-code text-sm text-gray-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }

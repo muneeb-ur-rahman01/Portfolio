@@ -1,60 +1,123 @@
-const bullets = [
-  "Deployed blockchain nodes on Azure cloud using Kubernetes clusters, ensuring high availability.",
-  "Containerized and deployed React.js applications using Docker and Kubernetes workflows.",
-  "Built CI/CD pipelines using GitHub Actions for automated build and deployment processes.",
-  "Monitored system performance and cluster health using Prometheus and Grafana dashboards.",
+import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
+import SpotlightCard from "./SpotlightCard";
+
+const experiences = [
+  {
+    role: "Junior Backend Developer Intern",
+    company: "Hopefelt Foundation",
+    location: "",
+    duration: "Jun 2026 – Aug 2026",
+    bullets: [
+      "Designed the SaaS product's backend architecture and database schema as a backend developer intern.",
+      "Built RESTful APIs with ASP.NET Core and SQL Server for the product's core features.",
+      "Implemented JWT authentication and role-based authorization to secure user access.",
+      "Documented API endpoints with Swagger, tested them using Postman, and collaborated with the team through GitHub.",
+    ],
+  },
+  {
+    role: "Junior DevOps Engineer Intern",
+    company: "Beenco Labs",
+    location: "Karachi",
+    duration: "Oct 2025 – Nov 2025",
+    bullets: [
+      "Deployed blockchain nodes on Azure cloud using Kubernetes clusters, ensuring high availability.",
+      "Containerized and deployed React.js applications using Docker and Kubernetes workflows.",
+      "Built CI/CD pipelines using GitHub Actions for automated build and deployment processes.",
+      "Monitored system performance and cluster health using Prometheus and Grafana dashboards.",
+    ],
+  },
 ];
+
+const list = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.3 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, x: -20 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 export default function Experience() {
   return (
-    <section id="experience" className="mb-16 text-white font-code px-4 md:px-0">
-      
-      {/* Heading */}
-      <p className="text-xl md:text-2xl font-semibold uppercase tracking-widest mb-8 relative inline-block">
-        Experience
-        <span className="absolute left-0 -bottom-2 w-1/2 h-[2px] bg-gradient-to-r from-purple-500 to-cyan-400"></span>
-      </p>
+    <section id="experience" className="scroll-mt-24 py-20">
+      <SectionHeading
+        index="02"
+        eyebrow="Experience"
+        title="Experience"
+      />
 
-      {/* Card */}
-      <div className="relative bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a] border border-gray-800 rounded-2xl p-6 transition duration-300 hover:border-purple-500 hover:scale-[1.02]">
-        
-        {/* Timeline Line */}
-        <div className="absolute left-4 top-6 bottom-6 w-[2px] bg-gradient-to-b from-purple-500 to-cyan-400 opacity-40"></div>
+      <div className="relative pl-8 md:pl-12">
+        {/* Animated timeline */}
+        <motion.div
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute bottom-0 left-[7px] top-3 w-[2px] origin-top bg-gradient-to-b from-violet-500 to-cyan-400 opacity-50"
+        />
 
-        <div className="pl-8">
-          
-          {/* Top Section */}
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-5">
-            <div>
-              <p className="text-base md:text-lg font-semibold">
-                Junior DevOps Engineer Intern
-              </p>
-              <p className="text-sm text-cyan-400 mt-1">
-                Beenco Labs, Karachi
-              </p>
-            </div>
+        {/* Timeline dot */}
+        <span className="absolute left-0 top-3 flex h-4 w-4">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-60" />
+          <span className="relative inline-flex h-4 w-4 rounded-full bg-gradient-to-br from-violet-400 to-cyan-300" />
+        </span>
 
-            <span className="text-xs bg-white/5 border border-gray-700 px-3 py-1 rounded-full text-gray-300 backdrop-blur-sm">
-              Oct 2025 – Nov 2025
-            </span>
-          </div>
+        <div className="space-y-8">
+          {experiences.map((experience) => (
+            <Reveal key={experience.company}>
+              <SpotlightCard tilt={false} className="p-6 md:p-8">
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p className="text-lg font-semibold md:text-xl">
+                      {experience.role}
+                    </p>
 
-          {/* Bullet Points */}
-          <ul className="space-y-3">
-            {bullets.map((b, i) => (
-              <li
-                key={i}
-                className="group relative pl-6 text-sm text-gray-300 leading-relaxed transition"
-              >
-                {/* Custom Bullet */}
-                <span className="absolute left-0 top-2 w-2 h-2 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full group-hover:scale-125 transition"></span>
+                    <p className="mt-1 text-sm text-cyan-400">
+                      {experience.company}
+                      {experience.location
+                        ? `, ${experience.location}`
+                        : ""}
+                    </p>
+                  </div>
 
-                <span className="group-hover:text-white transition">
-                  {b}
-                </span>
-              </li>
-            ))}
-          </ul>
+                  <span className="w-fit rounded-full border border-white/10 bg-white/5 px-3 py-1 font-code text-xs text-gray-300 backdrop-blur-sm">
+                    {experience.duration}
+                  </span>
+                </div>
+
+                <motion.ul
+                  variants={list}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "-60px" }}
+                  className="space-y-3"
+                >
+                  {experience.bullets.map((bullet) => (
+                    <motion.li
+                      key={bullet}
+                      variants={item}
+                      className="group relative pl-6 text-sm leading-relaxed text-gray-300"
+                    >
+                      <span className="absolute left-0 top-2 h-2 w-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400 transition group-hover:scale-150" />
+
+                      <span className="transition group-hover:text-white">
+                        {bullet}
+                      </span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </SpotlightCard>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
