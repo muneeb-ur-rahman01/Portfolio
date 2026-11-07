@@ -19,6 +19,7 @@ const chips = [
   { label: "Kubernetes", pos: "top-12 -right-3 md:-right-8", delay: "-1.5s" },
   { label: ".NET Core", pos: "-bottom-5 left-6 md:left-10", delay: "-3s" },
   { label: "Azure", pos: "-bottom-4 -right-2 md:-right-6", delay: "-4.5s" },
+  { label: "Data Science Enthausiasts", pos: "-bottom-4 -right-2 md:-right-6", delay: "-4.5s" },
 ];
 
 const wordVariant = {
