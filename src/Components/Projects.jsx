@@ -4,6 +4,12 @@ import SpotlightCard from "./SpotlightCard";
 
 const projects = [
   {
+    icon: "📈",
+    name: "Financial Transaction Analysis & Prediction System",
+    desc: "End-to-end data science system on 541K retail transactions with non-destructive data cleaning, leakage-safe feature engineering and statistical testing. Built 4 ML models (sales forecasting, product demand forecasting, K-Means customer segmentation and anomaly detection) served through a CLI and an 8-page Streamlit dashboard, backed by 95 pytest tests.",
+    stack: ["Python", "Pandas", "Scikit-learn", "XGBoost", "Statsmodels", "Streamlit", "Plotly"],
+  },
+  {
     icon: "🧑‍💼",
     name: "Employee Management Web API",
     desc: "Built a backend RESTful CRUD API using ASP.NET Web API with Swagger integration for API testing and documentation.",
@@ -60,7 +66,7 @@ export default function Projects() {
         index="03"
         eyebrow="Projects"
         title="Projects"
-        subtitle="Things I've built across backend, cloud, desktop, mobile and embedded."
+        subtitle="Things I've built across backend, data science, cloud, desktop, mobile and embedded."
       />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
